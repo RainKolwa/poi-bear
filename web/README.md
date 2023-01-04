@@ -2,7 +2,7 @@
 
 ## todo
 
-- [ ] three column
+- [x] three column
 - [ ] tag list
 - [ ] post list
 - [ ] post detail
