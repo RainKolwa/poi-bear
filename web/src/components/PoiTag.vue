@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import SmartIcon from '@/components/SmartIcon.vue';
 // Todo: support nested tag
 const props = defineProps<{
   name: string;

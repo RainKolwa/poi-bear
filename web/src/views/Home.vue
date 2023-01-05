@@ -4,7 +4,12 @@ import PoiTag from '@/components/PoiTag.vue';
 import PoiPost from '@/components/PoiPost.vue';
 import type { ITag, IPost } from '@/global';
 
-const tags = reactive<ITag[]>([{ id: 1, name: 'tag1' }]);
+const tags = reactive<ITag[]>([
+  { id: 1, name: 'tag1' },
+  { id: 3, name: 'read' },
+  { id: 2, name: 'movie' },
+  { id: 4, name: 'travel' },
+]);
 const posts = reactive<IPost[]>([
   { id: 1, title: 'post1', content: 'content1' },
   { id: 2, title: 'title2', content: 'content2' },
@@ -36,13 +41,13 @@ const posts = reactive<IPost[]>([
 <style lang="less" scoped>
 .page-home {
   @apply flex;
-  .tag,
+  .tags,
   .list,
   .detail {
     height: 100vh;
     @apply overflow-y-scroll border border-gray-300;
   }
-  .tag {
+  .tags {
     min-width: 130px;
   }
   .list {
