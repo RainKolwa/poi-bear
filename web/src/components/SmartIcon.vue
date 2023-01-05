@@ -2,10 +2,12 @@
 /**
  * detect icon by name, use hashtag icon as default
  */
-import { computed } from 'vue';
+import { computed, withDefaults } from 'vue';
 import { HashIcon, MovieIcon, CheckboxIcon, BeachIcon } from 'vue-tabler-icons';
 
-const props = defineProps<{ name: string }>();
+const props = withDefaults(defineProps<{ name: string; color: string }>(), {
+  color: '#7e7f80',
+});
 
 const iconMap = {
   movie: MovieIcon,
@@ -19,4 +21,6 @@ const icon = computed(() => {
 });
 </script>
 
-<template><component :is="icon" /></template>
+<template>
+  <component :is="icon" size="20" :style="`color: ${color}`" />
+</template>

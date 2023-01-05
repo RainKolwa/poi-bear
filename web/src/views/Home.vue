@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { ref, reactive } from 'vue';
 import PoiTag from '@/components/PoiTag.vue';
 import PoiPost from '@/components/PoiPost.vue';
+import { EditIcon } from 'vue-tabler-icons';
 import type { ITag, IPost } from '@/global';
 
 const tags = reactive<ITag[]>([
@@ -11,19 +12,39 @@ const tags = reactive<ITag[]>([
   { id: 4, name: 'travel' },
 ]);
 const posts = reactive<IPost[]>([
-  { id: 1, title: 'post1', content: 'content1' },
-  { id: 2, title: 'title2', content: 'content2' },
+  // generate three posts with mock title and content
+  {
+    id: 1,
+    title: 'Lorem ipsum dolor sit amet',
+    updated_at: '3y',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  },
 ]);
+const selectedTag = ref<number | null>(null);
+const newPost = () => {
+  console.log('new post');
+};
 </script>
 <template>
   <div class="page-home">
-    <div class="tag w-56">
-      <poi-tag v-for="tag in tags" :key="tag.id" :name="tag.name" />
+    <div class="col-tags w-56">
+      <poi-tag
+        v-for="tag in tags"
+        :key="tag.id"
+        :name="tag.name"
+        :selected="selectedTag === tag.id"
+        @click="selectedTag = tag.id"
+      />
     </div>
-    <div class="list w-96">
+    <div class="col-posts w-96">
+      <div>
+        <search-bar />
+        <edit-icon @click="newPost" />
+      </div>
       <poi-post v-for="post in posts" :key="post.id" :post="post" />
     </div>
-    <div class="detail flex-1">
+    <div class="col-detail flex-1">
       <div class="editor">
         <p>
           <!--demo text-->
@@ -41,19 +62,23 @@ const posts = reactive<IPost[]>([
 <style lang="less" scoped>
 .page-home {
   @apply flex;
-  .tags,
-  .list,
-  .detail {
+  background-color: #fbfbfb;
+  .col-tags,
+  .col-posts,
+  .col-detail {
     height: 100vh;
     @apply overflow-y-scroll border border-gray-300;
   }
-  .tags {
+  .col-tags {
     min-width: 130px;
+    background: #2f3235;
+    color: white;
+    padding: 5px;
   }
-  .list {
+  .col-posts {
     min-width: 220px;
   }
-  .detail {
+  .col-detail {
     min-width: 300px;
     .editor {
       margin: 0 auto;
