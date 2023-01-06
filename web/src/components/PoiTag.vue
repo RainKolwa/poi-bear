@@ -13,7 +13,10 @@ const color = computed(() => {
 </script>
 
 <template>
-  <div :class="`tag flex items-center ${selected ? 'selected' : ''}`">
+  <div
+    tabindex="-1"
+    :class="`tag flex items-center ${selected ? 'selected' : ''}`"
+  >
     <smart-icon :name="props.name" :color="color" />
     <div class="tag-name ml-3 text-sm">{{ props.name }}</div>
   </div>
@@ -23,10 +26,11 @@ const color = computed(() => {
 .tag {
   width: 100%;
   padding: 4px 0 4px 20px;
-  cursor: default;
+  cursor: pointer;
+  border-radius: 4px;
+  @apply focus:!bg-primary;
   &.selected {
-    background-color: #cd5654;
-    border-radius: 4px;
+    background-color: #424747;
   }
 }
 </style>

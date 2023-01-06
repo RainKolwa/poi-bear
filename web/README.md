@@ -1,15 +1,26 @@
-# web
+# Web
 
-## todo
+## Todo
 
-- [ ] icon
-- [x] three column
-- [ ] tag list
+### base
+
+- [x] icon
+
+### ui
+
+- [x] tag list
+- [x] tag + post react on route query
 - [ ] post list
 - [ ] post detail
-- [ ] markdown editor
-- [ ] login(wechat)?
-- [ ] setting(theme/font)?
+
+### markdown
+
+- [ ] editor
+
+### account
+
+- [ ] login
+- [ ] setting(theme + font)
 
 ## routes
 
